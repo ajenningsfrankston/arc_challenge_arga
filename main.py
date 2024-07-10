@@ -3,12 +3,12 @@ import sys
 import json
 
 
-def solve_task_id(task_id, task, task_type="training"):
+def solve_task_id(task_id, train, test, task_type="training"):
     """
     solves a given task and saves the solution to a file
     """
 
-    task = Task(task,task_id)
+    task = Task(task_id,train,test)
 
     abstraction, solution_apply_call, error, train_error, solving_time, nodes_explored = task.solve(
         shared_frontier=True, time_limit=1800, do_constraint_acquisition=True, save_images=True)
@@ -49,11 +49,10 @@ if __name__ == "__main__":
 
     task_type = 'training'
 
-
     task_id = '017c7c7b'
 
-    task = training_challenges[task_id]
-    task_solution = training_solutions[task_id][0]
+    train= training_challenges[task_id]
+    task_solution = training_solutions[task_id]
 
-    solve_task_id(task_id, task, task_type)
+    solve_task_id(task_id, train,task_solution, task_type)
 

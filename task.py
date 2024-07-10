@@ -19,7 +19,7 @@ class Task:
     all_possible_abstractions = Image.abstractions
     all_possible_transformations = ARCGraph.transformation_ops
 
-    def __init__(self, task, task_id):
+    def __init__(self, task_id, train, test):
         """
         contains all information related to an ARC task
         """
