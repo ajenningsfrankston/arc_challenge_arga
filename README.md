@@ -1,5 +1,7 @@
 # ARGA: Abstract Reasoning with Graph Abstractions
 
+The starting point for this repository is the ARGA paper implementation. It is modified to access the ARC challenge 2024 data. 
+
 This repository contains the implementation for ARGA as described in the AAAI-23 paper [Graphs, Constraints, and Search for the Abstraction and Reasoning Corpus](https://arxiv.org/abs/2210.09880).
 Some code were edited for formalism, which caused some small variations in the results as presented in the paper.
 

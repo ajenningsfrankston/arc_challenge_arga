@@ -19,13 +19,15 @@ class Task:
     all_possible_abstractions = Image.abstractions
     all_possible_transformations = ARCGraph.transformation_ops
 
-    def __init__(self, filepath):
+    def __init__(self, task):
         """
         contains all information related to an ARC task
         """
 
+        print(task)
+
         # get task id from filepath
-        self.task_id = filepath.split("/")[-1].split(".")[0]
+        self.task_id = task[0]
 
         # input output images given
         self.train_input = []
@@ -39,7 +41,7 @@ class Task:
         self.input_abstracted_graphs_original = dict()  # a dictionary of ARCGraphs, where the keys are the abstraction name and
         self.output_abstracted_graphs_original = dict()
 
-        # meta data to be kept track of
+        # metadata to be kept track of
         self.total_nodes_explored = 0
         self.total_unique_frontier_nodes = 0
         self.frontier_nodes_expanded = 0
