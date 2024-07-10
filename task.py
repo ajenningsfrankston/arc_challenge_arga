@@ -26,7 +26,8 @@ class Task:
 
         # get task id from filepath
         self.task_id = task_id
-        self.task = task
+        self.train = train
+        self.test = test
 
         # input output images given
         self.train_input = []
@@ -65,26 +66,30 @@ class Task:
         self.current_best_apply_call = None  # the apply call that produces the current best solution
         self.current_best_abstraction = None  # the abstraction that produced the current best solution
 
-        self.load_task_(self.task)
+        self.load_task_(self.train,self.test)
         self.img_dir = "images/" + self.task_id
         if not os.path.exists(self.img_dir):
             os.makedirs(self.img_dir)
 
-    def load_task_(self, task):
+    def load_task_(self, train, test):
         """
         loads the task from a json file
         """
-        data = task
-        for i, data_pair in enumerate(data["train"]):
-            self.train_input.append(
-                Image(self, grid=data_pair["input"], name=self.task_id + "_" + str(i + 1) + "_train_in"))
-            self.train_output.append(
-                Image(self, grid=data_pair["output"], name=self.task_id + "_" + str(i + 1) + "_train_out"))
-        for i, data_pair in enumerate(data["test"]):
-            self.test_input.append(
-                Image(self, grid=data_pair["input"], name=self.task_id + "_" + str(i + 1) + "_test_in"))
-            self.test_output.append(
-                Image(self, grid=data_pair["output"], name=self.task_id + "_" + str(i + 1) + "_test_out"))
+        train_data = train
+        test_data = test
+
+        for i, data_pair in enumerate(train_data["train"]):
+            self.train_input.append(Image(self, grid=data_pair["input"], name=self.task_id + "_" + str(i + 1) + "_train_in"))
+            self.train_output.append(Image(self, grid=data_pair["output"], name=self.task_id + "_" + str(i + 1) + "_train_out"))
+
+        tdata = train_data["test"][0]
+        #print("tdata")
+        #print(tdata)
+        #print("test data")
+        #print(test_data)
+        self.test_input.append(Image(self, grid=tdata["input"], name=self.task_id + "_" +  "_test_in"))
+        self.test_output.append(
+                Image(self, grid=test_data, name=self.task_id + "_"  + "_test_out"))
 
     def solve(self, shared_frontier=True, time_limit=1800, do_constraint_acquisition=True, save_images=False):
         """

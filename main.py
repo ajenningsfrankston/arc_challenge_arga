@@ -54,5 +54,8 @@ if __name__ == "__main__":
     train= training_challenges[task_id]
     task_solution = training_solutions[task_id]
 
+    print(train)
+    print(task_solution )
+
     solve_task_id(task_id, train,task_solution, task_type)
 
