@@ -3,12 +3,12 @@ import sys
 import json
 
 
-def solve_task_id(task, task_type="training"):
+def solve_task_id(task_id, task, task_type="training"):
     """
     solves a given task and saves the solution to a file
     """
 
-    task = Task(task)
+    task = Task(task,task_id)
 
     abstraction, solution_apply_call, error, train_error, solving_time, nodes_explored = task.solve(
         shared_frontier=True, time_limit=1800, do_constraint_acquisition=True, save_images=True)
@@ -16,10 +16,10 @@ def solve_task_id(task, task_type="training"):
     solution = {"abstraction": abstraction, "apply_call": solution_apply_call, "train_error": train_error,
                 "test_error": error, "time": solving_time, "nodes_explored": nodes_explored}
     if error == 0:
-        with open('solutions/correct/solutions_{}'.format(task), 'w') as fp:
+        with open('solutions/correct/solutions_{}'.format(task_id), 'w') as fp:
             json.dump(solution, fp)
     else:
-        with open('solutions/incorrect/solutions_{}'.format(task), 'w') as fp:
+        with open('solutions/incorrect/solutions_{}'.format(task_id), 'w') as fp:
             json.dump(solution, fp)
     print(solution)
 
@@ -46,20 +46,14 @@ if __name__ == "__main__":
 
     # example tasks:
 
-    print("Keys:", list(training_challenges.keys()))
 
-
-    task_no = 1
     task_type = 'training'
 
 
-    i = task_no
+    task_id = '017c7c7b'
 
-    t = list(training_challenges)[i]
-    task = training_challenges[t]
-    task_solution = training_solutions[t][0]
+    task = training_challenges[task_id]
+    task_solution = training_solutions[task_id][0]
 
-    print(task)
-
-    solve_task_id(task, task_type)
+    solve_task_id(task_id, task, task_type)
 

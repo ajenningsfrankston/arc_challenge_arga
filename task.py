@@ -19,15 +19,14 @@ class Task:
     all_possible_abstractions = Image.abstractions
     all_possible_transformations = ARCGraph.transformation_ops
 
-    def __init__(self, task):
+    def __init__(self, task, task_id):
         """
         contains all information related to an ARC task
         """
 
-        print(task)
-
         # get task id from filepath
-        self.task_id = task[0]
+        self.task_id = task_id
+        self.task = task
 
         # input output images given
         self.train_input = []
@@ -66,17 +65,16 @@ class Task:
         self.current_best_apply_call = None  # the apply call that produces the current best solution
         self.current_best_abstraction = None  # the abstraction that produced the current best solution
 
-        self.load_task_from_file(filepath)
+        self.load_task_(self.task)
         self.img_dir = "images/" + self.task_id
         if not os.path.exists(self.img_dir):
             os.makedirs(self.img_dir)
 
-    def load_task_from_file(self, filepath):
+    def load_task_(self, task):
         """
         loads the task from a json file
         """
-        with open(filepath) as f:
-            data = json.load(f)
+        data = task
         for i, data_pair in enumerate(data["train"]):
             self.train_input.append(
                 Image(self, grid=data_pair["input"], name=self.task_id + "_" + str(i + 1) + "_train_in"))
