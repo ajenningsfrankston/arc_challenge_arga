@@ -46,7 +46,6 @@ if __name__ == "__main__":
 
     # example tasks:
 
-
     task_type = 'training'
 
     task_id = '017c7c7b'

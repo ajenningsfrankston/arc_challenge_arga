@@ -418,7 +418,7 @@ class Task:
         """
         self.frontier_nodes_expanded += 1
         print("Expanding frontier node with abstraction {}".format(self.abstraction))
-        self.input_abstracted_graphs[self.abstraction] = []  # up to date abstracted graphs
+        self.input_abstracted_graphs[self.abstraction] = []  # up-to-date abstracted graphs
         for input_abstracted_graph in self.input_abstracted_graphs_original[self.abstraction]:
             input_abstracted = input_abstracted_graph.copy()
             for apply_call in frontier_node.data:
