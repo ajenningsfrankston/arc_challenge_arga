@@ -198,7 +198,7 @@ class Task:
             self.output_abstracted_graphs_original[abstraction] = \
                 [getattr(output, Image.abstraction_ops[abstraction])() for output in self.train_output]
 
-            # skip abstraction if it result in the same set of abstracted graphs as a previous abstraction,
+            # skip abstraction if it results in the same set of abstracted graphs as a previous abstraction,
             # for example: nbccg and ccgbr result in the same graphs if there are no enclosed black pixels
             found_match = False
             if len(existing_init_abstracted_graphs) != 0:
@@ -682,8 +682,15 @@ class Task:
         for i, output in enumerate(self.train_output):
             reconstructed = self.train_input[i].undo_abstraction(input_abstracted_graphs[i])
 
+            print(i)
+            print(reconstructed.graph.nodes)
+
             # hashing
+            print("dims")
+            print(output.height, output.width)
             for r in range(output.height):
+                print("r")
+                print(r)
                 for c in range(output.width):
                     token_string = token_string + str(reconstructed.graph.nodes[(r, c)]["color"])
             for node, data in input_abstracted_graphs[i].graph.nodes(data=True):

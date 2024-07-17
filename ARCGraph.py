@@ -58,7 +58,7 @@ class ARCGraph:
     def filter_by_color(self, node, color: int, exclude: bool = False):
         """
         return true if node has given color.
-        if exclude, return true if node does not have given color.
+        if exclude is true, return true if node does not have given color.
         """
         if color == "most":
             color = self.most_common_color
@@ -108,7 +108,7 @@ class ARCGraph:
     def filter_by_neighbor_size(self, node, size, exclude: bool = False):
         """
         return true if node has a neighbor of a given size.
-        if exclude, return true if node does not have a neighbor of a given size.
+        if exclude is true, return true if node does not have a neighbor of a given size.
         """
         if size == "max":
             size = self.get_attribute_max("size")
