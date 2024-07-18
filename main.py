@@ -1,3 +1,5 @@
+import os.path
+
 from task import *
 import sys
 import json
@@ -22,10 +24,17 @@ def solve_task_id(task_id, train, test, task_type="training"):
 
     solution = {"abstraction": abstraction, "apply_call": solution_apply_call, "train_error": train_error,
                 "test_error": error, "time": solving_time, "nodes_explored": nodes_explored}
+
+    if not os.path.exists('solutions'):
+        os.makedirs('solutions')
     if error == 0:
+        if not os.path.exists('solutions/correct'):
+            os.makedirs('solutions/correct')
         with open('solutions/correct/solutions_{}'.format(task_id), 'w') as fp:
             json.dump(solution, fp)
     else:
+        if not os.path.exists('solutions/incorrect'):
+            os.makedirs('solutions/incorrect')
         with open('solutions/incorrect/solutions_{}'.format(task_id), 'w') as fp:
             json.dump(solution, fp)
     print(solution)
