@@ -684,13 +684,12 @@ class Task:
 
             print(i)
             print(reconstructed.graph.nodes)
+            print(output.graph.nodes)
 
             # hashing
             print("dims")
             print(output.height, output.width)
             for r in range(output.height):
-                print("r")
-                print(r)
                 for c in range(output.width):
                     token_string = token_string + str(reconstructed.graph.nodes[(r, c)]["color"])
             for node, data in input_abstracted_graphs[i].graph.nodes(data=True):
