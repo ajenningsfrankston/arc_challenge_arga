@@ -86,8 +86,7 @@ class Task:
 
         tdata = train_data["test"][0]
         self.test_input.append(Image(self, grid=tdata["input"], name=self.task_id + "_" + "_test_in"))
-        self.test_output.append(
-            Image(self, grid=test_data[0], name=self.task_id + "_" + "_test_out"))
+        self.test_output.append(Image(self, grid=test_data, name=self.task_id + "_" + "_test_out"))
 
     def solve(self, shared_frontier=True, time_limit=1800, do_constraint_acquisition=True, save_images=False):
         """
@@ -682,13 +681,8 @@ class Task:
         for i, output in enumerate(self.train_output):
             reconstructed = self.train_input[i].undo_abstraction(input_abstracted_graphs[i])
 
-            print(i)
-            print(reconstructed.graph.nodes)
-            print(output.graph.nodes)
-
             # hashing
-            print("dims")
-            print(output.height, output.width)
+
             for r in range(output.height):
                 for c in range(output.width):
                     token_string = token_string + str(reconstructed.graph.nodes[(r, c)]["color"])
