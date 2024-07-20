@@ -20,7 +20,7 @@ def solve_task_id(task_id, train, test, task_type="training"):
     task = Task(task_id,train,test)
 
     abstraction, solution_apply_call, error, train_error, solving_time, nodes_explored = task.solve(
-        shared_frontier=True, time_limit=1800, do_constraint_acquisition=True, save_images=True)
+        shared_frontier=True, time_limit=30, do_constraint_acquisition=True, save_images=True)
 
     solution = {"abstraction": abstraction, "apply_call": solution_apply_call, "train_error": train_error,
                 "test_error": error, "time": solving_time, "nodes_explored": nodes_explored}
@@ -147,7 +147,7 @@ if __name__ == "__main__":
 
     task_type = 'training'
 
-    task_no = 1
+    task_no = 15
 
     t = list(training_challenges)[task_no]
     train= training_challenges[t]

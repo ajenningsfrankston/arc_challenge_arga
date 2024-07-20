@@ -683,6 +683,7 @@ class Task:
 
             # hashing
 
+
             for r in range(output.height):
                 for c in range(output.width):
                     token_string = token_string + str(reconstructed.graph.nodes[(r, c)]["color"])

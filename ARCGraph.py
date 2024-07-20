@@ -759,7 +759,7 @@ class ARCGraph:
         find the next available id for a given color,
         ex: if color=1 and there are already (1,0) and (1,1), return (1,2)
         """
-        if isinstance(color, list):  # multi-color cases
+        if isinstance(color, list):  # multicolor cases
             color = color[0]
         max_id = 0
         for node in self.graph.nodes():
